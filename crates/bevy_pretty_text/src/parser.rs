@@ -287,7 +287,7 @@ pub struct PrettyParser;
 impl PrettyParser {
     /// Parse `pretty_text` into a bundle.
     #[track_caller]
-    pub fn bundle(pretty_text: &str) -> Result<impl Bundle, PrettyParserError> {
+    pub fn bundle<'a>(pretty_text: &str) -> Result<impl Bundle + use<'a>, PrettyParserError> {
         Self::spans(pretty_text).map(ParsedPrettyText::into_bundle)
     }
 
@@ -332,7 +332,7 @@ pub struct PrettyParser2d;
 impl PrettyParser2d {
     /// Parse `pretty_text` into a bundle.
     #[track_caller]
-    pub fn bundle(pretty_text: &str) -> Result<impl Bundle, PrettyParserError> {
+    pub fn bundle<'a>(pretty_text: &str) -> Result<impl Bundle + use<'a>, PrettyParserError> {
         Self::spans(pretty_text).map(ParsedPrettyText::into_bundle)
     }
 
